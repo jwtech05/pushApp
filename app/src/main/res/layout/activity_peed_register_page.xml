@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="vertical"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                    android:text="PUSH"
+                    android:fontFamily="@font/cookierun_bold"
+                    android:textSize="40sp"
+                    android:textColor="#000"
+                    android:background="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/pushtitle1" app:layout_constraintBottom_toTopOf="@+id/divider3"
+                    app:layout_constraintVertical_bias="0.0"/>
+
+        <View
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+            />
+
+        <Button
+                android:text="POST"
+                android:textColor="#000"
+                android:backgroundTint="#fff"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" android:id="@+id/postPost"/>
+    </LinearLayout>
+
+    <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+    />
+    <TextView
+            android:text="TAGS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TagsText"/>
+    <TextView
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:inputType="textPersonName"
+            android:hint="Show what your done"
+            android:ems="10"
+            android:id="@+id/tagsEdit"/>
+    <TextView
+            android:text="COMMENT"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentText"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Any comments"
+            android:ems="10"
+            android:id="@+id/commentEdit"/>
+    <TextView
+            android:text=""
+            android:background="#2A808080"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" android:id="@+id/textView2"/>
+
+    <ImageButton
+            android:layout_width="150dp"
+            android:layout_height="150dp" tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/picturPost"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peedRegisterPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

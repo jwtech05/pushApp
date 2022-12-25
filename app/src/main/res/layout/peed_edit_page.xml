@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+>
+
+
+    <TextView
+            android:text="PUSH"
+            android:textSize="40sp"
+            android:textColor="#000"
+            android:fontFamily="@font/cookierun_bold"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/editLogo"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:hint="Write new comment"
+            android:ems="10"
+            android:id="@+id/editComment"/>
+    <Button
+            android:text="EDIT"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/editButton"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

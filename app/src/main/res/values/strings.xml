@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name"></string>
+    <string name="bio">피자의 기원은 확실치 않으나 튀르키예(터키)의 피데에서 비롯되었다는 설이 있다. 이 피데가 그리스로 건너갔으며그리스에서는 뻬이니를리(Πεϊνιρλι)라는 이름의 피데 요리가
+        있다. 주로 테살리아, 마케도니아, 트라키아 지방의 향토요리로 알려져 있는데, 알다시피 이 지역은 1912년까지도 오스만 제국 령으로 남아있던, 터키의 영향력이 가장 오랫동안 남아있던 지역들이다.
+        애초에 음식 이름인 뻬이니를리부터가 터키어로
+        \n치즈가 들어있는(peynirli)이라는 뜻이다. 기본적으로 치즈를 베이스로 토핑하지만, 여기에 다진 고기(κιμάς), 살라미(σαλάμι), 수주끼(σουτζούκι, 터키식 소시지)를 추가하기도
+        한다.
+        \n툭하면 터키와 요리 종주권을 두고 티격태격하는 그리스인들조차도 이 요리의 기원에 대해서만큼은 튀르키예에서 왔다고 받아들이고 있으며 음식 이름도 터키어 단어이기 때문에 뜻을 모르는 사람들이 많다.
+        \n현대의 피자는 중세 초기 이탈리아의 토마토가 들어간 나폴리탄 파이가 그 기원으로, 1889년부터 치즈가 들어가기 시작했다.[1]
+        \n15세기 중반 나폴리의 국왕이었던 페르디난도 1세는 종종 평민으로 은밀히 변장하여 나폴리의 빈민가를 찾아갔다고 전해지는데,
+        \n이것은 왕비가 궁전에서 금지한 음식인 피자를 맛보고 싶어서였다고 한다.[2]
+        \n그리고 오랫동안 나폴리를 중심으로 서민들의 든든한 식사로 이용되다가 19세기 이탈리아의 통일 과정에서 구휼 음식으로 각광을 받으면서 이탈리아 전역으로 퍼져 나갔다.
+        \n이후 세계 대전에서 이탈리아에 주둔한 미군들이 피자를 맛본 후 미국에 전해지거나 이탈리아의 이민자 및 노동자들이 미국으로 건너가면서 피자가 미국 전역으로 퍼지면서 세계적인 음식으로 발돋움하였다.
+    </string>
+    <string name="text_size">30sp</string>
+    <string name="padding">20dp</string>
+    <string name="what_is_your_favorite_food">what_is_your_favorite_food</string>
+    <string name="peed">
+        이름: 김아무개 \n\n오늘 한 일: 안드로이드, 자바 \n\n공부시간: 1hr
+    </string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_mypage_page">PUSH</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
