@@ -87,7 +87,8 @@
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
+            android:maxLines = "3"
             android:hint="장소 등록하려면 더블클릭"
             android:ems="10"
             android:id="@+id/locationEdit"

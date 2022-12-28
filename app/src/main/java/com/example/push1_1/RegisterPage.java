@@ -38,6 +38,8 @@ public class RegisterPage extends AppCompatActivity {
     TextView editTextDate;
     EditText editTextLocation;
 
+    String Lat, Lng;
+
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -81,7 +83,8 @@ public class RegisterPage extends AppCompatActivity {
                 intent.putExtra("regi_todo", editTextToDo.getText().toString());
                 intent.putExtra("regi_date", editTextDate.getText().toString());
                 intent.putExtra("regi_location", editTextLocation.getText().toString());
-
+                intent.putExtra("위도", Lat);
+                intent.putExtra("경도", Lng);
                 startActivity(intent);
             }
         });
@@ -111,8 +114,6 @@ public class RegisterPage extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-        editTextToDo.setText("");
-        editTextDate.setText("");
         editTextLocation.setText("");
         //Log.d("regi", "ONRESTART");
 
@@ -169,6 +170,9 @@ public class RegisterPage extends AppCompatActivity {
                 Log.d("이거나오나요","jibunAddress : " + temp.get("jibunAddress"));
                 Log.d("이거나오나요","위도 : " + temp.get("y"));
                 Log.d("이거나오나요","경도 : " + temp.get("x"));
+
+                Lat = (String) temp.get("y");
+                Lng = (String) temp.get("x");
             }
 
 

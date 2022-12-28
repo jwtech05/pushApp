@@ -201,6 +201,7 @@ public class TimerPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         motiveThread.interrupt();
+        flag = true;
         if(timer != null)
             timer.removeMessages(0);
         PreferenceManager.setString(getApplicationContext(), "할일중", "0", "현재로그인사용자");

@@ -54,6 +54,5 @@ public class AddressSearch extends AppCompatActivity {
         });
 
         aView.loadUrl("https://jwtech05.github.io/search-address/");
-        //aView.loadUrl("https://jwtech05.github.io/kakaoMap/");
     }
 }

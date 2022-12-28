@@ -32,6 +32,7 @@ public class PeedAdapter extends RecyclerView.Adapter<PeedAdapter.CustomViewHold
     private Context context;
     private RecyclerView 리사이클러뷰;
     private ArrayList<PeedRegisterItems> mainItems;
+    public static boolean flag;
     String strCnt;
     ScaleAnimation scaleAnimation;
     BounceInterpolator bounceInterpolator;//애니메이션이 일어나는 동안의 회수, 속도를 조절하거나 시작과 종료시의 효과를 추가 할 수 있다
@@ -98,7 +99,8 @@ public class PeedAdapter extends RecyclerView.Adapter<PeedAdapter.CustomViewHold
         if(DBPage.imageBitmap != null){
             holder.miniProfile.setImageBitmap(DBPage.imageBitmap);
         }
-/*        if(mainItems.get((mainItems.size()-1)-position).nickName.equals(LoginPage.loginer) && PreferenceManager.getString(리사이클러뷰.getContext(), "할일중", "현재로그인사용자").equals("작동중")){
+        if(mainItems.get((mainItems.size()-1)-position).nickName.equals(LoginPage.loginer) && PreferenceManager.getString(리사이클러뷰.getContext(), "할일중", "현재로그인사용자").equals("작동중")){
+            flag = true;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -120,12 +122,14 @@ public class PeedAdapter extends RecyclerView.Adapter<PeedAdapter.CustomViewHold
                                     TimeUnit.MILLISECONDS.toMinutes(TimerService.millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(TimerService.millis)),
                                     TimeUnit.MILLISECONDS.toSeconds(TimerService.millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(TimerService.millis))));
                             removeMessages(0);
-                            sendEmptyMessage(0);
+                            if(flag) {
+                                sendEmptyMessage(0);
+                            }
                     }
                 }
             };
 
-        }*/
+        }
         holder.button_favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

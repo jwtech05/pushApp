@@ -3,7 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
 >
     <!-- "Mark Favorite", should appear as action button if possible -->
-    <item
+<!--    <item
             android:id="@+id/longTimer"
             android:title="롱타이머"
             android:icon="@drawable/ic_baseline_access_time_24"
@@ -13,7 +13,7 @@
             android:id="@+id/timer"
             android:title="타이머"
             android:icon="@drawable/ic_baseline_alarm_24"
-            app:showAsAction="always"/>
+            app:showAsAction="always"/>-->
 
     <item
             android:id="@+id/register_todo"

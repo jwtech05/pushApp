@@ -6,15 +6,19 @@ import java.util.LinkedHashMap;
 
 public class CalPageItems {
 
-    public String todo;
+    String todo;
     String location;
     String date;
+    String Lat;
+    String Lng;
     HashMap<String, Integer> details;
 
-    public CalPageItems(String todo, String location, String date, LinkedHashMap<String, Integer> details) {
+    public CalPageItems(String todo, String location, String date, String Lat, String Lng, LinkedHashMap<String, Integer> details) {
         this.todo = todo;
         this.location = location;
         this.date = date;
+        this.Lat = Lat;
+        this.Lng = Lng;
         this.details = details;
     }
 

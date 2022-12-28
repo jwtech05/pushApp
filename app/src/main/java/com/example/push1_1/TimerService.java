@@ -79,6 +79,13 @@ public class TimerService extends Service {
         return START_STICKY;
     }
 
+    public void pause(){
+        stopSelf();
+    }
+
+    public void resume(){
+        startService((new Intent(this, TimerService.class)));
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

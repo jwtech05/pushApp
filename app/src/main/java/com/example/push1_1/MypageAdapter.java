@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,7 @@ public class MypageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public class HeaderViewHolder extends RecyclerView.ViewHolder{
         private final TextView name, email;
         private final CircleImageView profilePic;
-        private final ImageView account;
+        private final ImageView account, targetnumber;
         public HeaderViewHolder(@NonNull @NotNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             //profilePic = (CircleImageView) itemView.findViewById(R.id.profileImage);
@@ -59,11 +60,20 @@ public class MypageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             email = (TextView) itemView.findViewById(R.id.tags);
             profilePic = (CircleImageView) itemView.findViewById(R.id.profileImage);
             account = (ImageView) itemView.findViewById(R.id.account);
+            targetnumber = (ImageView) itemView.findViewById(R.id.targetnumber);
             profilePic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(recyclerViewInterface != null){
                         recyclerViewInterface.onItemClick();
+                    }
+                }
+            });
+            targetnumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        recyclerViewInterface.timerClick();
                     }
                 }
             });

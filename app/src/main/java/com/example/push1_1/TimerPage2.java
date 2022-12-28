@@ -117,7 +117,7 @@ public class TimerPage2 extends AppCompatActivity {
         stopButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onStopButton();
+                    onStopButton();
             }
         });
 
@@ -172,6 +172,7 @@ public class TimerPage2 extends AppCompatActivity {
     }
 
     public void onStopButton(){
+        PeedAdapter.flag = false;
         timeSetting2.setVisibility(View.VISIBLE);
         progressBarCircle2.setVisibility(View.GONE);
         showTime2.setVisibility(View.GONE);

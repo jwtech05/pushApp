@@ -1,17 +1,11 @@
 package com.example.push1_1;
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +17,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -160,14 +147,22 @@ public class MypageFragment extends Fragment implements RecyclerViewInterface{
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginPage.mGoogleSignInClient.signOut()
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                Intent intent = new Intent(getActivity(), LoginPage.class);
-                                startActivity(intent);
-                            }
-                        });
+                /*Intent serviceIntent = new Intent(getActivity(), TimerService.class);
+                stopService(serviceIntent);*/
+
+                PreferenceManager.setString(getContext(), "밀리타이머", "0", "현재로그인사용자");
+                PreferenceManager.setString(getContext(), "할일중", "STOP", "현재로그인사용자");
+                if(LoginPage.mGoogleSignInClient != null) {
+                    LoginPage.mGoogleSignInClient.signOut()
+                            .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    Intent intent = new Intent(getActivity(), LoginPage.class);
+                                    startActivity(intent);
+                                }
+                            });
+                }
+                Toast.makeText(getActivity(), "로그아웃되셨습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -198,11 +193,16 @@ public class MypageFragment extends Fragment implements RecyclerViewInterface{
         activityResultLauncher.launch(Intent.createChooser(intent, "Select picture"));
     }
 
+    @Override
+    public void timerClick() {
+        Intent timeIntent = new Intent(getActivity(), TimerPage2.class);
+        startActivity(timeIntent);
+    }
 
 
     @Override
     public void accountClick() {
-        Intent intent = new Intent(getActivity(), TestPage.class);
+        Intent intent = new Intent(getActivity(), MarkerPage.class);
         getActivity().startActivity(intent);
     }
 

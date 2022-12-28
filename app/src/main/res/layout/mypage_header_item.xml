@@ -19,36 +19,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 app:layout_constraintHorizontal_bias="0.05" app:layout_constraintTop_toTopOf="parent"/>
+
         <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp" app:srcCompat="@drawable/ic_baseline_alarm_24"
-                app:layout_constraintTop_toBottomOf="@id/profileImage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/targetnumber"
-                android:layout_marginTop="30dp"
-                android:id="@+id/workouttime"/>
-        <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp" app:srcCompat="@drawable/ic_baseline_adjust_24"
-                app:layout_constraintStart_toEndOf="@id/workouttime"
-                app:layout_constraintTop_toTopOf="@id/workouttime"
+                app:layout_constraintTop_toBottomOf="@id/profileImage"
                 app:layout_constraintEnd_toStartOf="@id/account"
+                android:layout_marginTop="30dp"
                 android:id="@+id/targetnumber"/>
         <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:layout_constraintStart_toEndOf="@id/targetnumber"
-                app:layout_constraintTop_toTopOf="@id/workouttime"
-                app:layout_constraintEnd_toStartOf="@id/battery"
-                app:srcCompat="@drawable/ic_baseline_account_balance_24"
-                android:id="@+id/account"/>
-        <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp" app:srcCompat="@drawable/ic_baseline_battery_2_bar_24"
-                app:layout_constraintStart_toEndOf="@id/account"
+                app:layout_constraintTop_toTopOf="@id/targetnumber"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/workouttime"
-                android:id="@+id/battery"/>
+                app:srcCompat="@drawable/ic_baseline_location_on_24"
+                android:id="@+id/account"/>
+
         <TextView
                 android:text="TEAMNOVA12"
                 android:textSize="30sp"

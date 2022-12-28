@@ -11,10 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class ToDoPage extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class ToDoPage extends AppCompatActivity {
     TextView textViewToDo;
     TextView textViewDate;
     TextView textViewLocation;
-    String toDo;
+    String toDo, Lat, Lng;
     String date;
     String location;
     HashMap<String, Integer> detail;
@@ -50,6 +53,10 @@ public class ToDoPage extends AppCompatActivity {
         location = intent.getStringExtra("regi_location");
         textViewLocation.setText(location);
 
+        Lat = intent.getStringExtra("위도");
+        Lng = intent.getStringExtra("경도");
+        Log.d("어디보자", Lat+","+Lng);
+        //PreferenceManager.clear(getApplicationContext(),"tester8일정DB");
         Button okButton = (Button) findViewById(R.id.okButton);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +64,29 @@ public class ToDoPage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), NavActivity.class);
                 String loginUser = PreferenceManager.getString(mContext, "현재로그인", "현재로그인사용자");
                 String user = loginUser.substring(0,loginUser.indexOf(","));
+
+                LinkedHashMap<String, Integer> HM = new LinkedHashMap<>();
+
+                CalPageItems cal = new CalPageItems(toDo, location, date, Lat, Lng, HM);
+
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put("할일", cal.todo);
+                    jsonObj.put("장소", cal.location);
+                    jsonObj.put("날짜", cal.date);
+                    jsonObj.put("위도", cal.Lat);
+                    jsonObj.put("경도", cal.Lng);
+                    jsonObj.put("세부",cal.details);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Log.d("호우호우", String.valueOf(jsonObj));
+
                 if(PreferenceManager.duplicateCheck(mContext, date+","+toDo, user+"일정DB")) {
                     Toast.makeText(mContext, "이미 있는 항목입니다.", Toast.LENGTH_SHORT).show();
                 }else{
-                    PreferenceManager.setString(mContext, date + "," + toDo, toDo+","+location+","+new HashMap<String,Integer>(), user + "일정DB");
+                    PreferenceManager.setString(mContext, date + "," + toDo, String.valueOf(jsonObj), user + "일정DB");
                     startActivity(intent);
                 }
             }

@@ -20,7 +20,7 @@
                 android:name=".AddressSearch"
                 android:exported="true"/>
         <activity
-                android:name=".TestPage"
+                android:name=".MarkerPage"
                 android:exported="true"/>
         <activity
                 android:name=".TimerPage2"
@@ -79,6 +79,9 @@
         <meta-data
                 android:name="com.kakao.sdk.AppKey"
                 android:value="59eb598c76f7e099026f34165db0c0ce"/>
+        <meta-data
+                android:name="com.naver.maps.map.CLIENT_ID"
+                android:value="mxb28e0kjp" />
     </application>
 
 </manifest>

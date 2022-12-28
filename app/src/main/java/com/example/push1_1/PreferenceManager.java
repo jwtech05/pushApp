@@ -169,6 +169,20 @@ public class PreferenceManager {
         return info;
     }
 
+    public static ArrayList<String> getStringAll(Context context, String 쉐어드분류){
+
+        ArrayList<String> info = new ArrayList<>();
+
+        PREFERENCES_NAME = 쉐어드분류;
+        SharedPreferences prefs = getPreferences(context);
+        Map<String, String> sharedArray = (Map<String, String>) prefs.getAll();
+        for(String x: sharedArray.keySet()){
+            info.add(sharedArray.get(x));
+
+        }
+        return info;
+    }
+
     public static ArrayList<PeedRegisterItems> getPeedItems(Context context, String 쉐어드분류){
 
         ArrayList<PeedRegisterItems> info = new ArrayList<>();

@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -14,9 +17,7 @@ public class CalEditPage extends AppCompatActivity {
 
     Context mContext;
     TextView textToDo, textLocation, textDate;
-    String todo;
-    String location;
-    String date;
+    String todo, location, date, Lat, Lng;
     Button detailButton, okButton, calDeleteButton;
     LinearLayout detailLayout;
     EditText detailText;
@@ -53,7 +54,19 @@ public class CalEditPage extends AppCompatActivity {
         textLocation.setText(location);
         textDate.setText(date);
 
-        String info = PreferenceManager.getString(mContext, date+","+todo, LoginPage.loginer+"일정DB");
+        Log.d("MAP", String.valueOf(detailInfo));
+
+        String allInfo = PreferenceManager.getString(mContext, date+","+todo, LoginPage.loginer+"일정DB");
+        String info;
+        JSONObject jsonObj;
+        try {
+            jsonObj = new JSONObject(allInfo);
+            Lat = (String) jsonObj.get("위도");
+            Lng = (String) jsonObj.get("경도");
+            info = (String) jsonObj.get("세부");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
         int idx = info.indexOf("{");
         int idx2 = info.indexOf("}");
         String getDetail = info.substring(idx+1,idx2);
@@ -91,8 +104,21 @@ public class CalEditPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, NavActivity.class);
-                calPageItems = new CalPageItems(todo, location, date, detailInfo);
-                PreferenceManager.setString(mContext, date+","+todo, calPageItems.todo +","+ calPageItems.location + ","+ calPageItems.details
+
+                CalPageItems calPageItems = new CalPageItems(todo, location, date, Lat, Lng, detailInfo);
+
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put("할일", calPageItems.todo);
+                    jsonObj.put("장소", calPageItems.location);
+                    jsonObj.put("날짜", calPageItems.date);
+                    jsonObj.put("위도", calPageItems.Lat);
+                    jsonObj.put("경도", calPageItems.Lng);
+                    jsonObj.put("세부",calPageItems.details);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                PreferenceManager.setString(mContext, date+","+todo, String.valueOf(jsonObj)
                         ,LoginPage.loginer+"일정DB");
                 v.getContext().startActivity(intent);
             }

@@ -19,7 +19,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/todoCheck"/>
     <TextView
-            android:hint="시간"
+            android:hint="장소"
+            android:ems="12"
             app:layout_constraintTop_toTopOf="@id/todoCheck"
             app:layout_constraintBottom_toBottomOf="@id/todoCheck"
             android:layout_width="wrap_content"

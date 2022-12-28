@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -60,7 +62,11 @@ public class CalFragment extends Fragment {
                 monthCheck = month+1;
                 dayCheck = dayOfMonth;
                 date = getTime(year, month, dayOfMonth);
-                checkDay(year, month, dayOfMonth);
+                try {
+                    checkDay(year, month, dayOfMonth);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
                 리싸이클러뷰.setLayoutManager(리니어매니저);
                 CalAdapter 리싸이클러어댑터 = new CalAdapter(calPageItems);
                 리싸이클러뷰.setAdapter(리싸이클러어댑터);
@@ -87,7 +93,7 @@ public class CalFragment extends Fragment {
                 intent.putExtra("date", date);
                 startActivity(intent);
                 return true;
-            case R.id.timer:
+/*            case R.id.timer:
                 intent = new Intent(getActivity(), TimerPage.class);
                 startActivity(intent);
                 return true;
@@ -95,24 +101,25 @@ public class CalFragment extends Fragment {
                 //TimerPage2.infi = false;
                 intent = new Intent(getActivity(), TimerPage2.class);
                 startActivity(intent);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void checkDay(int cYear, int cMonth, int cDay){
+    public void checkDay(int cYear, int cMonth, int cDay) throws JSONException {
 
         ArrayList<String> info = PreferenceManager.getStringArray(getActivity(), date+",", LoginPage.loginer+"일정DB");
 
         calPageItems = new ArrayList<>();
 
         for(String x: info){
-            int idx = x.indexOf(",");
-            int lastIdx = x.indexOf(",", idx+1);
-            String todo = x.substring(0,idx);
-            String loca = x.substring(idx+1, lastIdx);
-            calPageItems.add(new CalPageItems(todo, loca, date, new LinkedHashMap<String, Integer>()));
+
+            JSONObject jsonObj = new JSONObject(x);
+
+            String todo = (String) jsonObj.get("할일");
+            String loca = (String) jsonObj.get("장소");
+            calPageItems.add(new CalPageItems(todo, loca, date, (String) jsonObj.get("위도"), (String) jsonObj.get("경도"), new LinkedHashMap<String, Integer>()));
         }
     }
 
