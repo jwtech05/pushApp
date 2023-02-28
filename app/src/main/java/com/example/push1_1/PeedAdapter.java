@@ -100,14 +100,13 @@ public class PeedAdapter extends RecyclerView.Adapter<PeedAdapter.CustomViewHold
             holder.miniProfile.setImageBitmap(DBPage.imageBitmap);
         }
         if(mainItems.get((mainItems.size()-1)-position).nickName.equals(LoginPage.loginer) && PreferenceManager.getString(리사이클러뷰.getContext(), "할일중", "현재로그인사용자").equals("작동중")){
-            flag = true;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    timer.sendEmptyMessage(0);
-                    Log.d("혹시", "어떤문제가 있을까?");
+                    while(TimerPage2.infi) {
+                        timer.sendEmptyMessage(0);
+                    }
                 }
-
             }).start();
 
             timer = new Handler(Looper.myLooper()){
@@ -115,16 +114,12 @@ public class PeedAdapter extends RecyclerView.Adapter<PeedAdapter.CustomViewHold
                 public void handleMessage(@NonNull Message msg) {
                     super.handleMessage(msg);
 
-                    switch(msg.what){
-                        case 0:
+                    if(msg.what == 0){
                             holder.status.setText(String.format("%02d:%02d:%02d",
                                     TimeUnit.MILLISECONDS.toHours(TimerService.millis),
                                     TimeUnit.MILLISECONDS.toMinutes(TimerService.millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(TimerService.millis)),
                                     TimeUnit.MILLISECONDS.toSeconds(TimerService.millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(TimerService.millis))));
                             removeMessages(0);
-                            if(flag) {
-                                sendEmptyMessage(0);
-                            }
                     }
                 }
             };

@@ -94,6 +94,7 @@ public class TimerPage2 extends AppCompatActivity {
                         PreferenceManager.setString(getApplicationContext(), "할일중", "작동중", "현재로그인사용자");
                         PreferenceManager.setString(getApplicationContext(), "총시간", String.valueOf(maxMillis), "현재로그인사용자");
                         serviceIntent.putExtra("시간", millis);
+                        infi = true;
                         reset = 1;
                     }else{
                         serviceIntent.putExtra("시간", Long.parseLong(PreferenceManager.getString(getApplicationContext(),"밀리타이머", "현재로그인사용자")));
@@ -127,8 +128,7 @@ public class TimerPage2 extends AppCompatActivity {
             public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
 
-                switch (msg.what) {
-                    case 0:
+                    if(msg.what == 0){
                         timeSetting2.setVisibility(View.GONE);
                         progressBarCircle2.setVisibility(View.VISIBLE);
                         showTime2.setVisibility(View.VISIBLE);
@@ -139,40 +139,30 @@ public class TimerPage2 extends AppCompatActivity {
                         progressBarCircle2.setMax((int)maxMillis/ 1000);
                         progressBarCircle2.setProgress((int) TimerService.millis / 1000);
                         removeMessages(0);
-                        break;
                 }
             }
         };
     }
 
     public void onStartButton(){
-            infi = true;
             timer2 = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (infi && millis > 0) {
-                        Log.d("쓰레드","안");
-                        activityTimer.sendEmptyMessage(0);
                         try {
-                            Thread.sleep(1000);
+                            while (true) {
+                                activityTimer.sendEmptyMessage(0);
+                                Thread.sleep(1);
+                            }
                         } catch (Exception e) {
-                            infi = false;
                             e.printStackTrace();
-                            Log.d("인터럽트", "발생");
                         }
-                    }
                 }
             });
             timer2.start();
-        /*else if(startButton2.getText().equals("PAUSE")){
-            Intent intent = new Intent(TimerPage2.this, TimerService.class);
-            intent.putExtra("millis", millis);
-            stopService(intent);
-        }*/
     }
 
     public void onStopButton(){
-        PeedAdapter.flag = false;
+        infi = false;
         timeSetting2.setVisibility(View.VISIBLE);
         progressBarCircle2.setVisibility(View.GONE);
         showTime2.setVisibility(View.GONE);
